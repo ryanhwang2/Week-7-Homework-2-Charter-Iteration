@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailored Training for First IT Job</title>
+    <style>
+        :root {
+            --primary-navy: #1e3a8a;
+            --primary-blue: #3b82f6;
+            --accent-teal: #0d9488;
+            --success-green: #059669;
+            --warning-amber: #d97706;
+            --danger-red: #dc2626;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --white: #ffffff;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-700);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--neutral-100) 100%);
+            min-height: 100vh;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1002;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-teal), var(--primary-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            background: var(--white);
+            color: var(--primary-navy);
+            border: 2px solid var(--neutral-200);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 18px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            background: var(--primary-navy);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .nav-sidebar {
+            position: fixed;
+            left: -320px;
+            top: 0;
+            width: 320px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            border-right: 1px solid var(--neutral-200);
+        }
+
+        .nav-sidebar.open {
+            left: 0;
+        }
+
+        .nav-header {
+            padding: 24px;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .nav-menu {
+            padding: 16px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            padding: 0 24px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--neutral-600);
+            border-bottom: 1px solid var(--neutral-200);
+            margin-bottom: 16px;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 14px 24px;
+            color: var(--neutral-700);
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: var(--neutral-50);
+            border-left-color: var(--primary-blue);
+            color: var(--primary-navy);
+        }
+
+        .nav-item.active {
+            background: var(--neutral-100);
+            border-left-color: var(--primary-navy);
+            color: var(--primary-navy);
+            font-weight: 600;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            padding: 80px 48px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            font-size: 20px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .student-info {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--neutral-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .student-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-teal), var(--primary-blue));
+        }
+
+        .student-info h3 {
+            color: var(--primary-navy);
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .info-item {
+            background: var(--neutral-50);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.2s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--neutral-600);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .info-value {
+            color: var(--neutral-800);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--neutral-200);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--neutral-100) 100%);
+            padding: 24px 32px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--neutral-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+        }
+
+        .section-title {
+            color: var(--primary-navy);
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            font-size: 24px;
+        }
+
+        .expand-icon {
+            font-size: 20px;
+            color: var(--neutral-600);
+            transition: transform 0.3s ease;
+            font-weight: 600;
+        }
+
+        .section.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section.expanded .section-content {
+            display: block;
+        }
+
+        .section-inner {
+            padding: 32px;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 1px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            color: var(--primary-navy);
+            font-size: 14px;
+        }
+
+        .instructions strong {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .content-box {
+            background: var(--neutral-50);
+            border: 1px solid var(--neutral-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            border-left: 4px solid var(--accent-teal);
+        }
+
+        .content-box h3 {
+            color: var(--primary-navy);
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .content-box h4 {
+            color: var(--neutral-800);
+            margin: 20px 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .completed-work {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid var(--success-green);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .completed-header {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .scope-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid var(--neutral-200);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scope-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .scope-card.in-scope::before {
+            background: var(--success-green);
+        }
+
+        .scope-card.roadmap::before {
+            background: var(--warning-amber);
+        }
+
+        .scope-card.out-scope::before {
+            background: var(--danger-red);
+        }
+
+        .scope-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scope-card h4 {
+            margin-bottom: 16px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .scope-card.in-scope h4 {
+            color: var(--success-green);
+        }
+
+        .scope-card.roadmap h4 {
+            color: var(--warning-amber);
+        }
+
+        .scope-card.out-scope h4 {
+            color: var(--danger-red);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 24px 0;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .stakeholder-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            font-size: 14px;
+        }
+
+        .stakeholder-table th {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stakeholder-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--neutral-200);
+            vertical-align: top;
+        }
+
+        .stakeholder-table tr:hover {
+            background: var(--neutral-50);
+        }
+
+        .stakeholder-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .stakeholder-map-container {
+            background: var(--white);
+            border: 2px solid var(--neutral-200);
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 32px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .stakeholder-map-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            min-height: 500px;
+            position: relative;
+        }
+
+        .map-quadrant {
+            padding: 24px;
+            border: 1px solid var(--neutral-300);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .map-quadrant-1 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .map-quadrant-2 {
+            background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+        }
+
+        .map-quadrant-3 {
+            background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+        }
+
+        .map-quadrant-4 {
+            background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+        }
+
+        .map-quadrant-header {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .map-stakeholder-box {
+            background: var(--white);
+            border: 2px solid var(--primary-navy);
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            flex-grow: 1;
+        }
+
+        .map-stakeholder-category {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 12px;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .map-stakeholder-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            list-style: none;
+        }
+
+        .map-stakeholder-list li {
+            margin-bottom: 6px;
+            position: relative;
+        }
+
+        .map-stakeholder-list li::before {
+            content: '•';
+            position: absolute;
+            left: -15px;
+            color: var(--primary-navy);
+            font-weight: bold;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--primary-blue);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .quiz-question h4 {
+            color: var(--primary-navy);
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .quiz-btn {
+            background: var(--white);
+            border: 2px solid var(--neutral-200);
+            padding: 16px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .quiz-btn:hover {
+            background: var(--neutral-50);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-btn.correct {
+            background: #dcfce7;
+            border-color: var(--success-green);
+            color: #166534;
+        }
+
+        .quiz-btn.incorrect {
+            background: #fee2e2;
+            border-color: var(--danger-red);
+            color: #991b1b;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.correct {
+            background: #dcfce7;
+            border: 1px solid var(--success-green);
+            color: #166534;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #fee2e2;
+            border: 1px solid var(--danger-red);
+            color: #991b1b;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 1000;
+        }
+
+        .fab {
+            background: var(--white);
+            color: var(--primary-navy);
+            border: 2px solid var(--neutral-200);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fab:hover {
+            background: var(--primary-navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .fab-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+            width: 64px;
+            height: 64px;
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .header {
+                padding: 48px 24px;
+                margin-bottom: 32px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .section-inner {
+                padding: 24px;
+            }
+
+            .section-header {
+                padding: 20px 24px;
+            }
+
+            .scope-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-sidebar {
+                width: 100%;
+                left: -100%;
+            }
+
+            .nav-toggle {
+                top: 16px;
+                left: 16px;
+            }
+        }
+
+        @media print {
+            .nav-sidebar,
+            .nav-toggle,
+            .nav-overlay,
+            .progress-container,
+            .fab-container {
+                display: none !important;
+            }
+
+            .section-content {
+                display: block !important;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">☰</button>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <nav class="nav-sidebar" id="navSidebar">
+        <div class="nav-header">
+            Project Charter Navigation
+        </div>
+        <div class="nav-menu">
+            <div class="nav-section">
+                <div class="nav-section-title">Project Overview</div>
+                <a href="#student-info" class="nav-item">Student Information</a>
+                <a href="#section-1" class="nav-item">Title & Description</a>
+                <a href="#section-2" class="nav-item">Vision & Strategy</a>
+                <a href="#section-3" class="nav-item">Business Case</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Project Planning</div>
+                <a href="#section-4" class="nav-item">Project Scope</a>
+                <a href="#section-5" class="nav-item">Stakeholders</a>
+                <a href="#section-6" class="nav-item">Deliverables</a>
+                <a href="#section-7" class="nav-item">Budget</a>
+                <a href="#section-8" class="nav-item">Methodology</a>
+                <a href="#section-9" class="nav-item">Tool Selection</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Interactive</div>
+                <a href="#quiz-section" class="nav-item">Knowledge Check</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Tailored Training for First IT Job</h1>
+                <p>Project Charter - Managing IT Projects Course</p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Student Information -->
+            <div class="student-info" id="student-info">
+                <h3>Student Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Student Name:</div>
+                        <div class="info-value">Ryan Hwang</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Course:</div>
+                        <div class="info-value">Managing IT Projects</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Semester:</div>
+                        <div class="info-value">Fall 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Project Title & Description -->
+            <div class="section" id="section-1">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">📋</span>
+                        1. Project Title & Description
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            Replace the placeholder below with your specific project information. Include a clear project name and 2-3 sentences describing what you will deliver.
+                        </div>
+                        
+                        <div class="content-box">
+                            <h3>Project Title: Tailored Training for First IT Job</h3>
+                            <p><p><p>.</p>Establish measurable IT industry readiness to successfully apply for and interview for entry-level data management or enterprise systems management positions by December 2025. This project will help familiarize me with standard industry expectations, knowledge, and skills, as well as serving as tangible evidence of my relevant training, knowledge application, and first foray into establishing my professional profile and career.</p>  </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vision, Mission & Strategy Alignment -->
+            <div class="section" id="section-2">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎯</span>
+                        2. Vision, Mission & Strategy Alignment
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            Explain how this project aligns with your personal mission, vision, and strategic goals. Reference your previous mission/vision/strategy work.
+                        </div>
+                        
+                        <div class="content-box">
+                            <h4>Personal Mission Connection:</h4>
+                            <p>My personal mission is to obtain my first entry-level job data management or enterprise systems management job by December of this year.  This project supports that mission by ensuring I am in an optimal position of career familiarity and readiness to fulfill professional IT expectations and demands by the time of acceptance.</p>
+                            
+                            <h4>Vision Alignment:</h4>
+                            <p>My vision is to become a respected leader in data management and enterprise resource planning, known for adaptable, scalable solutions and excellent client relationships while staying current with system developments. These skills will directly transfer to data management contexts where system integration, troubleshooting, and stakeholder communication are essential.</p>
+                            <h4>Strategic Goal Support:</h4>
+                            <p>This project strategically addresses key SWOT elements to advance my vision. It leverages Strengths by demonstrating ability to deliver quality and adaptable work that fulfills industry benchmarks. It capitalizes on Opportunities by systematically building industry relationships and gaining current market intelligence about data management trends. It directly addresses Weaknesses by ensuring I meet baseline industry expectations and showcasing technical competency. The project's documentation focus particularly aligns with data management careers, where clear communication about system processes and stakeholder needs is fundamental to success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Business Case -->
+            <div class="section" id="section-3">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">💼</span>
+                        3. Business Case & Justification
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            Describe how this project will add value to you either professionally or personally. What benefits will you gain?
+                        </div>
+                        
+                        <div class="content-box">
+                            <h4>Professional Value:</h4>
+                            <p>My career will be benefited by this project through this serving as a powerful introduction and demonstration of my personal compatibility and aptitude for entry-level data management and enterprise systems management positions. Through this, I will be better equipped to start off my career on a strong basis and access/utilize numerous opportunities that will subsequently emerge through my effort and established professional network.</p>
+                            
+                            <h4>Personal Value:</h4>
+                            <p>I will receive enhancements to my problem solving skills, since this entire project is dedicated around identifying a problem, devising solutions, and applying those solutions in smaller, more dynamic and specific modules and sections. Additionally, I will gain personal satisfaction since once I complete this project, I will realize it is a larger project and be proud of myself for managing to stick it out and do the best work that I could.</p>
+                            
+                            <h4>Learning Outcomes:</h4>
+                            <p>I will learn valuable industry knowledge about IT, such as potential career choices, recommended training, and companies to look out for. Additionally, I will gain project management experience and training, since this entire project is centered around such. Furthermore, I will improve on my technical skills, since I have to create a viewable and professional database, a fully functional and interactable website with HTML, and a report on what resources I used and their value.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: High-Level Scope -->
+            <div class="section" id="section-4">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">📝</span>
+                        4. High-Level Scope
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="completed-work">
+                            <div class="completed-header">✅ Use Your Previous Scope Assignment</div>
+                            <p>Copy and paste your scope document content from your previous assignment into the placeholders below.</p>
+                        </div>
+                        
+                        <!-- Single grid container for all four cards -->
+                        <div class="scope-grid">
+                            <!-- In Scope Card 1 -->
+                            <div class="scope-card in-scope">
+                                <h4>✅ In Scope for Semester Project: Part One</h4>
+                                <div class="scope-content">
+                                    <ul>
+                                        <li>Working HTML personal data management website documenting journey by integrating the following deliverables.</li>
+                                        
+                                        <li>CompTIA A+ Certificate</li>
+                                        
+                                        <li>Access/Analysis of various resources and knowledge I made use of, such as books, courses, hands-on activities</li>
+                                        
+                                        <li>Professional portfolio demonstrating technical capabilities and project management experience for data management interviews. Include website showcase, certification evidence, and talking points. Ready by December 1st.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- In Scope Card 2 -->
+                            <div class="scope-card in-scope">
+                                <h4>✅ In Scope for Semester Project: Part Two</h4>
+                                <div class="scope-content">
+                                    <ul>
+                                        <li>Job application package with resources highlighting compatibility with entry-level data management and enterprise systems positions.</li>
+                                        <li>Application tracking system monitoring application process, confirmation, and examination of entry-level positions.</li>
+                                        <li>Networking action plan directing process of using professional network to open/advance career opportunities.</li>
+                                        <li>Professional network database detailing value and impact of relationships/contacts with professionals within the IT industry.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Roadmap Card -->
+                            <div class="scope-card roadmap">
+                                <h4>🗺️ Roadmap Items (≤6 Months)</h4>
+                                <div class="scope-content">
+                                    <ul>
+                                        <li>Personally developed projects created using knowledge gained during website (i.e., app, system, network, application)</li>
+                                        <li>Quality and sizeable professional network within IT that is more than a few members in single-digits</li>
+                                        <li>Further certifications and personal training (i.e., Cisco CCNA, Cisco CCNP)</li>
+                                        <li>Sizeable first-hand experience within IT industry (i.e., internship, shadowing, work studies, first-time job). This can occur within the semester, but there is a considerable chance that it will not, so I am putting it here.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Out of Scope Card -->
+                            <div class="scope-card out-scope">
+                                <h4>❌ Out of Scope</h4>
+                                <div class="scope-content">
+                                    <ul>
+                                        <li>Forming my own IT company (this delves more into realms of business management and administration, which is something I am not undertaking at the moment)</li>
+                                        <li>Obtaining high-level position within IT field or industry (I am just starting, and no one will entrust me with such so early on)</li>
+                                        <li>Creating mechanical system for me to integrate IT systems into (I am not an engineer and I do not possess enough expertise to input IT systems into it successfully)</li>
+                                        <li>Advanced data management specializations requiring years of experience (such as enterprise architecture, advanced analytics, or data science modeling).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end scope-grid -->
+                </div>
+            </div>
+
+            <!-- Section 5: Stakeholder Register -->
+            <div class="section" id="section-5">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">👥</span>
+                        5. Stakeholder Register
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="completed-work">
+                            <div class="completed-header">✅ Use Your Previous Stakeholder Assignment</div>
+                            <p>Copy and paste your stakeholder information from your previous assignment. Include both the table and your power-interest grid.</p>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="stakeholder-table">
+                                <thead>
+                                    <tr>
+                                        <th>Stakeholder</th>
+                                        <th>Category</th>
+                                        <th>Role/Interest</th>
+                                        <th>Power</th>
+                                        <th>Interest</th>
+                                        <th>Engagement Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CompTIA</td>
+                                        <td>External</td>
+                                        <td>Organization responsible for overseeing, defining, and awarding industry certifications (i.e., CompTIA A+)</td>
+                                        <td>High</td>
+                                        <td>Low</td>
+                                        <td>Keep satisfied, Manage and Check Regularly — fulfill any prerequisite documentation, vetting, or training they might need, while also regularly checking communications they have sent. Also, I will refer to official resources and policies to ensure compliance with standards and expectations.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Professor Espinoza</td>
+                                        <td>External</td>
+                                        <td>Academic mentor and potential source of professional insight and contacts</td>
+                                        <td>High</td>
+                                        <td>High</td>
+                                        <td>Manage closely by regularly attend class, ask questions and for feedback, show her my work. Additionally, contact her via posted contact information on syllabus regarding information within project management.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Older Sister</td>
+                                        <td>External</td>
+                                        <td>Personal confidant and informal guide to navigating job market</td>
+                                        <td>Low</td>
+                                        <td>High</td>
+                                        <td>Spend time with her and tell about my struggles, successes, and status. Leverage usage of technology like cell phones, email, and instant messaging to provide real-time updates, insights, and opinions on my work. Meet up if possible and vent.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Father</td>
+                                        <td>External</td>
+                                        <td>Provider for household, financial sponsor, and source of professional mentorship and personal growth</td>
+                                        <td>Low</td>
+                                        <td>Low</td>
+                                        <td>Monitor and offer insights into my work, as well as explaining what it actually is and importance in layman's terms. Ask for him to teach relevant and valuable soft and hard skills learned from work. Inform him about critical decisions within my life (i.e., financial decisions, academic developments), and gain support (i.e., if he needs to sign off on something)</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>Future Employers</td>
+                                        <td>External</td>
+                                        <td>Professional organizations that will evaluate my compatibility with offered positions and see value in my professional development.</td>
+                                        <td>High</td>
+                                        <td>Low</td>
+                                        <td>Keep satisfied and Engage — Reach out regarding questions, issues, and relevant commentary on positions, expectations, work environment, and more. Share relevant professional developments and stories with them, and also tailor personal objectives and skills for them.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Myself</td>
+                                        <td>Internal</td>
+                                        <td>Ensuring this project is done to my best ability, so I can be better equipped for first job and personal growth.</td>
+                                        <td>High</td>
+                                        <td>High</td>
+                                        <td>Keep Accountable, Organized, and Relevant — Set structured system of tasks to accomplish, means to accomplish them, and deadlines. Keep those set in accessible and clean central repository, categorized by purpose and topic. Additionally, regularly note how it contributes to the greater project's completion.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="stakeholder-map-container">
+                            <h4 style="text-align: center; margin: 20px 0; color: var(--primary-navy); font-weight: 600;">Power-Interest Grid Visualization</h4>
+                            <div class="stakeholder-map-grid">
+                                <!-- Quadrant 1: Keep Satisfied -->
+                                <div class="map-quadrant map-quadrant-1">
+                                    <div class="map-quadrant-header">Keep Satisfied</div>
+                                    <div class="map-stakeholder-box">
+                                        <div class="map-stakeholder-category">High Power, Low Interest</div>
+                                        <ul class="map-stakeholder-list">
+                                            <li>CompTIA</li>
+                                            <li>Future Employers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Quadrant 2: Manage Closely -->
+                                <div class="map-quadrant map-quadrant-2">
+                                    <div class="map-quadrant-header">Manage Closely</div>
+                                    <div class="map-stakeholder-box">
+                                        <div class="map-stakeholder-category">High Power, High Interest</div>
+                                        <ul class="map-stakeholder-list">
+                                            <li>Myself</li>
+                                            <li>Professor Espinoza</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Quadrant 3: Monitor -->
+                                <div class="map-quadrant map-quadrant-3">
+                                    <div class="map-quadrant-header">Monitor</div>
+                                    <div class="map-stakeholder-box">
+                                        <div class="map-stakeholder-category">Low Power, Low Interest</div>
+                                        <ul class="map-stakeholder-list">
+                                            <li>Father</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Quadrant 4: Keep Informed -->
+                                <div class="map-quadrant map-quadrant-4">
+                                    <div class="map-quadrant-header">Keep Informed</div>
+                                    <div class="map-stakeholder-box">
+                                        <div class="map-stakeholder-category">Low Power, High Interest</div>
+                                        <ul class="map-stakeholder-list">
+                                            <li>Older Sister</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Project Deliverables -->
+            <div class="section" id="section-6">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">📦</span>
+                        6. Project Deliverables
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            This section outlines the specific deliverables that will be produced during this project, including their type, description, and definition of done criteria.
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="stakeholder-table">
+                                <thead>
+                                    <tr>
+                                        <th>Deliverable Name</th>
+                                        <th>Type</th>
+                                        <th>SMART Description</th>
+                                        <th>Definition of Done</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CompTIA A+ Certificate</td>
+                                        <td>Tangible</td>
+                                        <td>Professional certification providing foundational IT knowledge essential for data management roles, covering systems integration, troubleshooting, and security fundamentals. Contains two exams - Core 1 V15 and Core 2 V15. Should be obtained around November 14th at latest .</td>
+                                        <td>• Obtain confirmation email about completion<br>
+                                            • Verify physical certificate will be mailed to address<br>
+                                            • Downloadable PDF viewable and accessible<br>
+                                            • Document how certification knowledge applies to data management contexts</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data Management Portfolio Website</td>
+                                        <td>Tangible</td>
+                                        <td>Professional website written in HTML, CSS, and JavaScript, hosted by GitHub, report, showcasing data management capabilities through functional database examples, project documentation, and industry insights. Delivered around November 14th at latest.</td>
+                                        <td>• Stakeholder consent given to publish relevant data<br>
+                                            • Accessible on mobile and computer browsers<br>
+                                            • Includes working database examples and data visualization<br>
+                                            • Page loads under 2 seconds on 4G<br>
+                                            • Code compiles with no severe issues<br>
+                                            • Demonstrates data organization and management principles</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Professional Network Database</td>
+                                        <td>Tangible</td>
+                                        <td>Using Google Sheets, AirTable, Firebase, or Notion to manage professional data management relationships and insights from conversations. Include 4-5 active professionals, finished by November 14th, accessible through website.</td>
+                                        <td>• Consent of professional contacts obtained<br>
+                                            • Accessible on mobile and computer devices<br>
+                                            • Focuses specifically on data management professionals<br>
+                                            • All portions viewable with correct display</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resource Utilization Report</td>
+                                        <td>Tangible</td>
+                                        <td>Summary and analysis of resources used during project for personal insight and understanding of current situation and future paths. Microsoft Word, MLA format, accessible via website. Delivered by November 14th.</td>
+                                        <td>• Documents time accessed, medium, purpose, crediting<br>
+                                            • Follows proper MLA format and citations<br>
+                                            • Organized by date, format, topics<br>
+                                            • Has sufficient backups and recovery measures<br>
+                                            • Reviewed by at least two classmates</td>
+                                    </tr>
+    <td>Integrated Job Screening Process</td>
+    <td>Tangible</td>
+    <td>To streamline the process of preparing, tailoring, and submitting applications for data management and enterprise systems roles, ensuring both high-quality application materials and documented evidence of submitted applications.</td>
+    <td>• Completed set of three tailored resumes and cover letters for targeted entry-level roles within Data Management and Enterprise Systems<br>
+        • Resume highlights technical, troubleshooting, and systems integration skills<br>
+        • Cover letter demonstrates fit with data management capabilities and requirements, aligning with career goals and transferable skills<br>
+        • LinkedIn profile updated with certification, portfolios, website, newly acquired skills, and project achievements<br>
+        • At least three qualified job applications submitted and tracked in application log, including company name, job title, submission date, research notes, requirement alignment, and follow-up status<br>
+        • Confirmation emails, screenshots, or recruiter correspondence saved as evidence of completion</td>
+</tr>
+<tr>
+    <td>Interview Preparation Portfolio</td>
+    <td>Tangible</td>
+    <td>Professional portfolio demonstrating technical capabilities and project management experience for data management interviews. Include website showcase, certification evidence, and talking points. Ready by December 1st.</td>
+    <td>• Portfolio accessible via tablet/laptop for interviews<br>
+        • Includes 2-3 minute presentation outline<br>
+        • Technical questions and answers prepared<br>
+        • STAR method examples documented for behavioral questions<br>
+        • Practice interview completed with career services or contact</td>
+</tr>
+<tr>
+    <td>Networking Action Plan</td>
+    <td>Tangible</td>
+    <td>Strategic plan for leveraging professional network to generate job leads and referrals. Include contact outreach schedule, referral requests, and relationship maintenance strategy. Executed throughout November-December.</td>
+    <td>• Outreach plan for all 4-5 professional contacts created<br>
+        • At least 2 contacts approached for job leads or referrals<br>
+        • Follow-up schedule established for relationship maintenance<br>
+        • Documentation of network expansion efforts<br>
+        • Evidence of at least 1 job lead or referral generated</td>
+</tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Budget Estimation -->
+            <div class="section" id="section-7">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">💰</span>
+                        7. Budget Estimation
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            This section provides a comprehensive breakdown of project costs including labor, equipment/software, materials, services, and risk contingency planning.
+                        </div>
+                        
+                        <h4 style="color: var(--primary-navy); margin: 24px 0 16px 0; font-weight: 600;">Project Cost Breakdown</h4>
+                        <div class="table-container">
+                            <table class="stakeholder-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Quantity</th>
+                                        <th>Rate/Unit Cost</th>
+                                        <th>Total Hours</th>
+                                        <th>Subtotal</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background-color: var(--neutral-100); font-weight: bold;">
+                                        <td colspan="6">LABOR COSTS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IT Student/Developer</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td>160</td>
+                                        <td>$0.00</td>
+                                        <td>Primary development work</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Research & Documentation</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td>20</td>
+                                        <td>$0.00</td>
+                                        <td>CompTIA research, report writing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Testing & Quality Assurance</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td>8</td>
+                                        <td>$0.00</td>
+                                        <td>Cross-browser testing, validation</td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td colspan="3">LABOR SUBTOTAL</td>
+                                        <td>188</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="background-color: var(--neutral-100); font-weight: bold;">
+                                        <td colspan="6">EQUIPMENT/SOFTWARE COSTS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CompTIA A+ Core 1 Exam (220-1101)</td>
+                                        <td>1</td>
+                                        <td>$370.00</td>
+                                        <td></td>
+                                        <td>$370.00</td>
+                                        <td>Pearson VUE certification</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CompTIA A+ Core 2 Exam (220-1102)</td>
+                                        <td>1</td>
+                                        <td>$370.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Covered by institution voucher</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Visual Studio Code</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Free IDE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Git/GitHub</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Free version control</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Browser Dev Tools</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Built-in testing tools</td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td colspan="4">EQUIPMENT/SOFTWARE SUBTOTAL</td>
+                                        <td>$370.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="background-color: var(--neutral-100); font-weight: bold;">
+                                        <td colspan="6">MATERIALS COSTS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CompTIA A+ Study Guide (Digital)</td>
+                                        <td>1</td>
+                                        <td>$45.00</td>
+                                        <td></td>
+                                        <td>$45.00</td>
+                                        <td>Official certification guide</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Practice Test Software</td>
+                                        <td>1</td>
+                                        <td>$29.99</td>
+                                        <td></td>
+                                        <td>$29.99</td>
+                                        <td>MeasureUp or similar</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stock Photos/Icons</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Unsplash/free resources</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Documentation Templates</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Free online templates</td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td colspan="4">MATERIALS SUBTOTAL</td>
+                                        <td>$74.99</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="background-color: var(--neutral-100); font-weight: bold;">
+                                        <td colspan="6">SERVICES COSTS</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GitHub Pages Hosting</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Free static site hosting</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Domain Name (optional)</td>
+                                        <td>1</td>
+                                        <td>$12.99</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Using GitHub subdomain instead</td>
+                                    </tr>
+                                    <tr>
+                                        <td>W3C Validation Service</td>
+                                        <td>1</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Free HTML/CSS validation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Professional Networking Events</td>
+                                        <td>2</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                        <td>$0.00</td>
+                                        <td>Institution-sponsored events</td>
+                                    </tr>
+                                    <tr style="font-weight: bold;">
+                                        <td colspan="4">SERVICES SUBTOTAL</td>
+                                        <td>$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="background-color: #e8f5e8; font-weight: bold;">
+                                        <td colspan="3">TOTAL DIRECT COSTS</td>
+                                        <td>188</td>
+                                        <td>$444.99</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CONTINGENCY (20%)</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>$89.00</td>
+                                        <td>Risk mitigation buffer</td>
+                                    </tr>
+                                    <tr style="background-color: var(--primary-navy); color: white; font-weight: bold;">
+                                        <td colspan="3">TOTAL PROJECT BUDGET</td>
+                                        <td>188</td>
+                                        <td>$533.99</td>
+                                        <td>Complete project cost</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4 style="color: var(--primary-navy); margin: 24px 0 16px 0; font-weight: 600;">Student Time Investment Breakdown</h4>
+                        <div class="table-container">
+                            <table class="stakeholder-table">
+                                <thead>
+                                    <tr>
+                                        <th>Task Category</th>
+                                        <th>Hours</th>
+                                        <th>Value</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CompTIA Research & Study</td>
+                                        <td>60</td>
+                                        <td>Personal Dev</td>
+                                        <td>Exam preparation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HTML/CSS Development</td>
+                                        <td>50</td>
+                                        <td>Skill Building</td>
+                                        <td>Web development practice</td>
+                                    </tr>
+                                    <tr>
+                                        <td>JavaScript Programming</td>
+                                        <td>30</td>
+                                        <td>Skill Building</td>
+                                        <td>Interactive features</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Development</td>
+                                        <td>20</td>
+                                        <td>Skill Building</td>
+                                        <td>Contact management</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Report Writing & Research</td>
+                                        <td>25</td>
+                                        <td>Academic</td>
+                                        <td>Documentation skills</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Testing & Quality Assurance</td>
+                                        <td>15</td>
+                                        <td>Professional</td>
+                                        <td>Quality standards</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Documentation</td>
+                                        <td>15</td>
+                                        <td>Professional</td>
+                                        <td>Process documentation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Professional Networking</td>
+                                        <td>8</td>
+                                        <td>Career Dev</td>
+                                        <td>Industry connections</td>
+                                    </tr>
+                                    <tr style="background-color: var(--primary-navy); color: white; font-weight: bold;">
+                                        <td>TOTAL TIME INVESTMENT</td>
+                                        <td>233</td>
+                                        <td>Career Growth</td>
+                                        <td>Skill development value</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4 style="color: var(--primary-navy); margin: 24px 0 16px 0; font-weight: 600;">Risk Analysis</h4>
+                        <div class="table-container">
+                            <table class="stakeholder-table">
+                                <thead>
+                                    <tr>
+                                        <th>Risk</th>
+                                        <th>Impact</th>
+                                        <th>Mitigation Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Risk #1: Certification Exam Failures</td>
+                                        <td>$740.00</td>
+                                        <td>Potential retake costs</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Risk #2: Technical Learning Curve</td>
+                                        <td>40 hrs</td>
+                                        <td>Additional development time</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Risk #3: Scope Creep</td>
+                                        <td>20%</td>
+                                        <td>Feature expansion risk</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 20px; border-radius: 12px; margin-top: 24px; border-left: 4px solid var(--primary-blue);">
+                            <h4 style="color: var(--primary-navy); margin-bottom: 12px; font-weight: 600;">Cost-Saving Strategies:</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>Used textbooks instead of new ($200+ saved)</li>
+                                <li>Free hosting vs paid hosting ($120/year saved)</li>
+                                <li>Open source tools vs commercial ($500+ saved)</li>
+                                <li>Campus resources vs commercial courses ($300+ saved)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Project Methodology -->
+            <div class="section" id="section-8">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">⚙️</span>
+                        8. Project Methodology
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="instructions">
+                            <strong>Instructions:</strong>
+                            This section documents the chosen project methodology based on requirements assessment and delivery needs.
+                        </div>
+                        
+                        <div class="content-box">
+                            <h3>Selected Methodology: Predictive Development Approach</h3>
+                            
+                            <h4>Methodology Justification:</h4>
+                            <p>I chose the predictive methodology because: 1) I have already set requirements for the deliverables and how/what must be done; 2) have already stated in a previous submitted assignment of Deliverables how I will turn in all in at the same time; 3) I already have identified and planned for risks early on; and 4) I plan to document everything related to my journey in this project extensively, in due part to several of my deliverables requiring specific dates and details about personal involvement and application of relevant data and sources used.</p>
+                            
+                            <h4>Requirements Assessment:</h4>
+                            <p>My core deliverables are well-defined and unlikely to change, given the certification requirements and technical specifications already established. However, the job application and networking components require iterative refinement based on market feedback and professional input. This hybrid aspect fits within the Predictive framework as the technical deliverables follow a traditional waterfall approach, while the career-focused deliverables incorporate feedback loops. The compressed timeline and need for coordinated delivery of technical components support the Predictive methodology choice.</p>
+                            
+                            <h4>Delivery Approach:</h4>
+                            <p>I will deliver once at the end, because a majority, if not all, of the deliverables will be viewable and accessible on my personal HTML website. If not on the website, it will be presented separately but also at the same time as the website. Multiple releases would not work, since the deliverables themselves are reliant on the other one being completed for proper quality and accuracy.</p>
+                            
+                            <h4>Project Phases:</h4>
+                            <ul>
+                                <li><strong>Initiate:</strong> Feasibility assessment and risk evaluation</li>
+                                <li><strong>Plan:</strong> Design potential sources, professionals to contact, schedule, and materials</li>
+                                <li><strong>Execute:</strong> Achieve CompTIA A+ Certificate, interview IT professionals, write report on used resources, create database about professional network, include it in website</li>
+                                <li><strong>Test:</strong> Quality assurance and validation</li>
+                                <li><strong>Deploy:</strong> Release final website and deliverables</li>
+                                <li><strong>Close:</strong> Project presentation and documentation</li>
+                            </ul>
+                            
+                            <div style="margin: 24px 0;">
+                                <h4 style="color: var(--primary-navy); margin-bottom: 16px; font-weight: 600;">Project Methodology Diagrams</h4>
+                                <p style="font-style: italic; color: var(--neutral-600); margin-bottom: 20px;">This diagram represents my chosen methodology of Predictive because: 1) it has extensive upfront planning; 2) single delivery in that it will all be delivered at the same time (Week 11 or 12); 3) extensive Documentation being indicated in all the weeks from planning and throughout execution for various deliverables; 4) requirements are clearly specified and not changed after initial definition.</p>
+                                
+                                <div style="margin: 20px 0; text-align: center;">
+                                    <h5 style="color: var(--primary-navy); margin-bottom: 15px; font-weight: 600; font-size: 16px;">Predictive Methodology Overview</h5>
+                                    <img src="images/methodology-overview.png" alt="Predictive Methodology Overview Diagram" style="max-width: 100%; height: auto; border: 1px solid var(--neutral-300); border-radius: 8px; box-shadow: var(--shadow);"> 
+                                </div>
+                                
+                                <div style="background: var(--neutral-50); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--accent-teal);">
+                                    <h4 style="color: var(--primary-navy); margin-bottom: 12px; font-weight: 600;">Key Methodology Features:</h4>
+                                    <ul style="margin: 0; padding-left: 20px;">
+                                        <li>Extensive upfront planning (3+ weeks of design and planning)</li>
+                                        <li>Single final deployment of all deliverables simultaneously</li>
+                                        <li>Requirements clearly defined and unlikely to change</li>
+                                        <li>Extensive documentation throughout the project lifecycle</li>
+                                        <li>Risk assessment completed early in initiation phase</li>
+                                        <li>Quality assurance and testing before final release</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Project Tool Selection -->
+<div class="section" id="section-9">
+    <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+        <h2 class="section-title">
+            <span class="section-icon">🛠️</span>
+            9. Project Tool Selection & Justification
+        </h2>
+        <span class="expand-icon">▼</span>
+    </div>
+    <div class="section-content">
+        <div class="section-inner">
+            <div class="instructions">
+                <strong>Instructions:</strong>
+                This section documents the project management tools selected and their justification based on methodology requirements and project needs.
+            </div>
+            
+            <div class="content-box">
+                <h3>Selected Tool: SmartSheet</h3>
+                
+                <h4>Tools Explored:</h4>
+                <p>I tested Monday.com, Asana, and SmartSheet.</p>
+                
+                <h4>Final Choice & Reasoning:</h4>
+                <p>After evaluating multiple project management platforms, I selected SmartSheet as the primary tool for this project. During the evaluation process, Asana presented technical barriers during account setup, specifically within their organizational onboarding workflow, which prevented successful platform access. SmartSheet demonstrated functionality issues with template accessibility and editing capabilities, limiting its practical application for project requirements. Monday.com provided seamless integration with existing Google account credentials and demonstrated reliable functionality across all tested features.</p>
+                
+                <br>
+
+                <p>This platform aligns effectively with the selected Predictive methodology through several key capabilities. The system provides comprehensive documentation management for each project phase and process, enabling systematic tracking of all deliverables. Role-based access controls and administrative permissions support the change management requirements inherent in Predictive approaches. The platform's integrated timeline visualization, status tracking, project dashboards, and progress metrics facilitate the detailed planning and monitoring essential for successful Predictive project execution. Additionally, the interface leverages familiar spreadsheet and collaborative platform paradigms, reducing implementation complexity. The platform's risk management features, including task health indicators and customizable risk categorization, support the proactive risk identification and mitigation planning required by the Predictive methodology.</p>
+                
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>Various free templates for Project Management formats with Work Breakdown Schedules that fit or can be easily adjusted to suit the Predictive Model, which is a plus for me.</li>
+                    <li>Ability to successfully import and integrate files from Microsoft Project, Excel, Google Sheets, and Atlassian's Trello</li>
+                    <li>Can add Sheets to the Workspace (the overall environment where I can add details to my project's structure) in the form of Grids, Gantt Charts, Timeline, or Boards</li>
+                    <li>Can create Report and add it into the Workspace, wherein the types are Row Report, where it uses data already put into the sheets, or Sheet Summary Report, where it uses sheet summary fields.</li>
+                </ul>
+                
+                <h4>Cost Consideration:</h4>
+                <p>In terms of cost considerations, a service being Free or it being paid impacts my choice, in that I am more likely to use the Free version, since I am a college student with not a lot of expendable income. And if the Free version offers the functions and features I need for my work, albeit with limitations, I will take it, so long as I can do my work adequately within the limitations. If not, I look for another free alternative.</p>
+                
+                <h4>Project Structure Setup:</h4>
+                <p>Within the SmartSheet, my project is split into various accessible pages: 1) Task Tracker; 2) Tasks Due; 3) Project Dashboard; 4) WBS by Phase; 5) Project Timeline; and 6) Tasks by Status. For the purposes of this activity, it will pertain to Task Tracker and Project Timeline. Tasks by Status is divided into various columns, where the first column details the Phase number or specific greater component of my project each task or step is within. The title of the phase is next to the box indicating Phase Number, and for each box successively under the title, it details what each task is going to do. The column to the right describes in detail how to better achieve that task, and to the right is who the task is assigned to, in this case, me. To the right of the assigned person is the in-progress status, whether the task is "Complete" or "In Progress" or "Not Started", and to the right of that is the percentage complete metric indicating how far are you into completing the task with the maximum being 100%. To the right shows the start and end dates for each phase and task, with the duration column to the right summarizing totals days needed for each.</p>
+                
+                <br>
+                
+                <p>Project Timeline is similarly structured to the Tasks by Status, with the entire project and timeline divided into various "Phases" wherein the major project steps and components are fulfilled. Phase 1 is Initiation, Phase 2 is Design, Phase 3 is Delivery, and Phase 4 is Closing. Each phase except for Delivery labels the major task in the box under the Phase Name, and in Delivery, the Phase Name is given but it is further divided into Deliverables (materials that must be completed for the project), Work Packages (critical processes of the materials), and the Tasks themselves within the Work Packages that fulfill Work Packages.</p>
+                
+                <div style="margin: 24px 0;">
+                    <h4 style="color: var(--primary-navy); margin-bottom: 16px; font-weight: 600;">Project Tool Implementation Screenshots</h4>
+                    
+                    <div style="margin: 20px 0; text-align: center;">
+                        <h5 style="color: var(--primary-navy); margin-bottom: 15px; font-weight: 600; font-size: 16px;">Timeline Dynamic View Photo One</h5>
+                        <img src="images/timeline-dynamic-view-1.png" alt="Timeline Dynamic View Photo One" style="max-width: 100%; height: auto; border: 1px solid var(--neutral-300); border-radius: 8px; box-shadow: var(--shadow);">
+                    </div>
+                    
+                    <div style="margin: 20px 0; text-align: center;">
+                        <h5 style="color: var(--primary-navy); margin-bottom: 15px; font-weight: 600; font-size: 16px;">Timeline Dynamic View Last Photo</h5>
+                        <img src="images/timeline-dynamic-view-3.png" alt="Timeline Dynamic View Last Photo" style="max-width: 100%; height: auto; border: 1px solid var(--neutral-300); border-radius: 8px; box-shadow: var(--shadow);">
+                    </div>
+                    
+                    <div style="margin: 20px 0; text-align: center;">
+                        <h5 style="color: var(--primary-navy); margin-bottom: 15px; font-weight: 600; font-size: 16px;">Project Tasks Photo One</h5>
+                        <img src="images/project-tasks-1.png" alt="Project Tasks Photo One" style="max-width: 100%; height: auto; border: 1px solid var(--neutral-300); border-radius: 8px; box-shadow: var(--shadow);">
+                    </div>
+                    
+                    <div style="margin: 20px 0; text-align: center;">
+                        <h5 style="color: var(--primary-navy); margin-bottom: 15px; font-weight: 600; font-size: 16px;">Project Tasks Photo Two</h5>
+                        <img src="images/project-tasks-2.png" alt="Project Tasks Photo Two" style="max-width: 100%; height: auto; border: 1px solid var(--neutral-300); border-radius: 8px; box-shadow: var(--shadow);">
+                    </div>
+                </div>
+                
+                <h4>Implementation Reflection:</h4>
+                <p>What surprised me was how time-consuming and tedious SmartSheet was, since I was used to Excel and its commands, so I had to manually create new roles and implement the data. Additionally, I had to synthesize all the prior information I had about methodology and work breakdown structures so it would fit within the structure of SmartSheet. It was easier than expected to make the visual layout of the SmartSheet look and feel professional, since there are many templates, but it was harder than expected to ensure that SmartSheet would recognize and accept what I wrote, since there were so many preestablished rules, conditions, and dependencies within the document's settings.</p>
+                
+                <div style="background: var(--neutral-50); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--accent-teal);">
+                    <h4 style="color: var(--primary-navy); margin-bottom: 12px; font-weight: 600;">Tool Integration Benefits:</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>15+ realistic tasks created with reasonable duration estimates</li>
+                        <li>3-5 major deliverables clearly defined and tracked</li>
+                        <li>Timeline with workflow dependencies established</li>
+                        <li>Project phases aligned with Predictive methodology requirements</li>
+                        <li>Real-time progress tracking and status monitoring capabilities</li>
+                        <li>Professional documentation and reporting features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Interactive Quiz Section -->
+            <div class="section" id="quiz-section">
+                <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎮</span>
+                        Interactive Knowledge Check
+                    </h2>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="section-content">
+                    <div class="section-inner">
+                        <div class="quiz-container" id="quiz-container">
+                            <div class="quiz-question">
+                                <h4>Test your project management knowledge:</h4>
+                                <p id="question-text">What methodology was chosen for this project?</p>
+                                <div class="quiz-options">
+                                    <button class="quiz-btn" data-answer="correct">Predictive</button>
+                                    <button class="quiz-btn" data-answer="incorrect">Agile</button>
+                                    <button class="quiz-btn" data-answer="incorrect">Hybrid</button>
+                                    <button class="quiz-btn" data-answer="incorrect">Adaptive</button>
+                                </div>
+                                <div id="quiz-feedback" class="quiz-feedback"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" onclick="scrollToTop()" title="Back to top">↑</button>
+        <button class="fab" onclick="toggleAllSections()" title="Expand/Collapse all">≡</button>
+        <button class="fab fab-primary" onclick="printCharter()" title="Print charter">🖨️</button>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const navToggle = document.getElementById('navToggle');
+        const navSidebar = document.getElementById('navSidebar');
+        const navOverlay = document.getElementById('navOverlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navToggle.addEventListener('click', () => {
+            navSidebar.classList.toggle('open');
+            navOverlay.classList.toggle('show');
+            document.body.style.overflow = navSidebar.classList.contains('open') ? 'hidden' : 'auto';
+        });
+
+        navOverlay.addEventListener('click', () => {
+            navSidebar.classList.remove('open');
+            navOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close navigation when clicking nav items
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navSidebar.classList.remove('open');
+                navOverlay.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Section toggle functionality
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('expanded');
+            const isExpanded = section.classList.contains('expanded');
+            header.setAttribute('aria-expanded', isExpanded);
+            
+            if (isExpanded) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Toggle all sections
+        function toggleAllSections() {
+            const sections = document.querySelectorAll('.section');
+            const expandedSections = document.querySelectorAll('.section.expanded');
+            const shouldExpand = expandedSections.length < sections.length / 2;
+            
+            sections.forEach(section => {
+                const header = section.querySelector('.section-header');
+                if (shouldExpand) {
+                    section.classList.add('expanded');
+                    header.setAttribute('aria-expanded', 'true');
+                } else {
+                    section.classList.remove('expanded');
+                    header.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('section-header')) {
+                e.preventDefault();
+                toggleSection(e.target);
+            }
+            
+            if (e.key === 'Escape') {
+                navSidebar.classList.remove('open');
+                navOverlay.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+            
+            if (e.altKey && e.key === 'a') {
+                e.preventDefault();
+                toggleAllSections();
+            }
+        });
+
+        // Progress bar functionality
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = Math.min((scrollTop / documentHeight) * 100, 100);
+            progressBar.style.width = scrollPercent + '%';
+        }
+
+        // Active navigation highlighting
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.section, .student-info');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            const scrollPos = window.pageYOffset + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Throttle scroll events
+        let ticking = false;
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateProgressBar();
+                    updateActiveNav();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Quiz functionality
+        function initQuiz() {
+            const quizButtons = document.querySelectorAll('.quiz-btn');
+            const feedback = document.getElementById('quiz-feedback');
+
+            quizButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const isCorrect = this.dataset.answer === 'correct';
+                    
+                    quizButtons.forEach(b => {
+                        b.disabled = true;
+                        b.classList.remove('correct', 'incorrect');
+                    });
+
+                    setTimeout(() => {
+                        if (isCorrect) {
+                            this.classList.add('correct');
+                            feedback.textContent = 'Correct! Predictive methodology was chosen because requirements are well-defined and unlikely to change.';
+                            feedback.className = 'quiz-feedback show correct';
+                        } else {
+                            this.classList.add('incorrect');
+                            quizButtons.forEach(b => {
+                                if (b.dataset.answer === 'correct') {
+                                    b.classList.add('correct');
+                                }
+                            });
+                            feedback.textContent = 'Not quite right. The correct answer is Predictive methodology.';
+                            feedback.className = 'quiz-feedback show incorrect';
+                        }
+                        
+                        setTimeout(() => {
+                            quizButtons.forEach(b => {
+                                b.disabled = false;
+                                b.classList.remove('correct', 'incorrect');
+                            });
+                            feedback.className = 'quiz-feedback';
+                        }, 3000);
+                    }, 100);
+                });
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const targetPosition = target.offsetTop - 100;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Print functionality
+        function printCharter() {
+            const sections = document.querySelectorAll('.section');
+            const expandedStates = [];
+            
+            sections.forEach((section, index) => {
+                expandedStates[index] = section.classList.contains('expanded');
+                section.classList.add('expanded');
+                section.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+            });
+            
+            setTimeout(() => {
+                window.print();
+                
+                setTimeout(() => {
+                    sections.forEach((section, index) => {
+                        if (!expandedStates[index]) {
+                            section.classList.remove('expanded');
+                            section.querySelector('.section-header').setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                }, 1000);
+            }, 200);
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuiz();
+            
+            // Auto-expand first section
+            setTimeout(() => {
+                const firstSection = document.querySelector('.section');
+                if (firstSection) {
+                    firstSection.classList.add('expanded');
+                    firstSection.querySelector('.section-header').setAttribute('aria-expanded', 'true');
+                }
+            }, 500);
+            
+            updateProgressBar();
+            updateActiveNav();
+            
+            console.log('Project Charter loaded successfully');
+        });
+    </script>
+</body>
+</html>
