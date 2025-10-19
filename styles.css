@@ -70,6 +70,38 @@
             transform: translateY(-1px);
         }
 
+        /* ADD THESE STYLES HERE ⬇️ */
+        .expand-all-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: var(--accent-teal);
+            color: var(--white);
+            border: 2px solid var(--neutral-200);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .expand-all-toggle:hover {
+            background: var(--primary-blue);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+        .expand-all-toggle {
+           top: 16px;
+           right: 16px;
+           padding: 10px 16px;
+           font-size: 12px;
+       }
+    }
+
         .nav-sidebar {
             position: fixed;
             left: -320px;
