@@ -40,6 +40,12 @@ function toggleAllSections() {
     const sections = document.querySelectorAll('.section');
     const expandedSections = document.querySelectorAll('.section.expanded');
     const shouldExpand = expandedSections.length < sections.length / 2;
+
+    //Update button text if it exists
+    const expandAllText = document.getElementById('expandAllText');
+    if (expandAllText) {
+        expandAllText.textContent = shouldExpand ? 'Collapse All' : 'Expand All';
+    }
     sections.forEach(section => {
         const header = section.querySelector('.section-header');
         if (shouldExpand) {
@@ -78,7 +84,7 @@ document.addEventListener('keydown', function(e) {
 function updateProgressBar() {
     const progressBar = document.getElementById('progressBar');
     const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const documentHeight = documents.documentElement.scrollHeight - windowHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollPercent = Math.min((scrollTop / documentHeight) * 100, 100);
     progressBar.style.width = scrollPercent + '%';
