@@ -1673,157 +1673,119 @@
 </div>
 
 
-<!-- Section 10: Weekly Status Report -->
-<div class="section" id="section-10">
-    <div class="section-header" onclick="toggleSection(this)" tabindex="0" role="button" aria-expanded="false">
-        <h2 class="section-title">
-            <span class="section-icon">📊</span>
-            10. Weekly Status Report
-        </h2>
-        <span class="expand-icon">▼</span>
+<div class="section-inner">
+    <div class="instructions">
+        <strong>Instructions:</strong>
+        Weekly status reports documenting project progress, accomplishments, and challenges throughout the semester.
     </div>
-    <div class="section-content">
-        <div class="section-inner">
-            <div class="instructions">
-                <strong>Instructions:</strong>
-                Use this form to track weekly progress, accomplishments, and upcoming plans throughout your project timeline.
-            </div>
-            
-            <div class="content-box">
-                <h3>Weekly Status Tracker</h3>
-                
-                <div style="background: var(--white); padding: 24px; border-radius: 12px; border: 2px solid var(--neutral-200); margin-top: 20px;">
-                    
-                    <!-- Report Title -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            📋 Report Title
-                        </label>
-                        <input type="text" 
-                               id="reportTitle" 
-                               placeholder="e.g., Week 3 Status Report"
-                               style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px;">
-                    </div>
-
-                    <!-- Project Goal -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            🎯 Project Goal
-                        </label>
-                        <textarea 
-                            id="projectGoal" 
-                            placeholder="Describe the main project goal..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 80px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Project Manager -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            👤 Project Manager
-                        </label>
-                        <input type="text" 
-                               id="projectManager" 
-                               placeholder="Your name"
-                               value="Ryan Hwang"
-                               style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px;">
-                    </div>
-
-                    <!-- Overall Project Health -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            💚 Overall Project Health
-                        </label>
-                        <select id="projectHealth" 
-                                style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; cursor: pointer;">
-                            <option value="">Select status...</option>
-                            <option value="on-track">✅ On Track</option>
-                            <option value="at-risk">⚠️ At Risk</option>
-                            <option value="off-track">🚨 Off Track</option>
-                            <option value="complete">🎉 Complete</option>
-                        </select>
-                    </div>
-
-                    <!-- Accomplishments This Week -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            ✅ Accomplishments This Week
-                        </label>
-                        <textarea 
-                            id="accomplishments" 
-                            placeholder="List what was completed this week..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Plans for Next Week -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            📅 Plans for Next Week
-                        </label>
-                        <textarea 
-                            id="nextWeekPlans" 
-                            placeholder="List what you plan to work on next week..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Upcoming Milestones -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            🎯 Upcoming Milestones
-                        </label>
-                        <textarea 
-                            id="upcomingMilestones" 
-                            placeholder="List upcoming milestones and their target dates..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Issues & Risk Mitigation -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            ⚠️ Issues & Risk Mitigation
-                        </label>
-                        <textarea 
-                            id="issuesRisks" 
-                            placeholder="Describe any issues, risks, and how you plan to address them..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Changes Since Last Report -->
-                    <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-weight: 600; color: var(--primary-navy); margin-bottom: 8px;">
-                            🔄 Changes Since Last Report
-                        </label>
-                        <textarea 
-                            id="changesSince" 
-                            placeholder="Note any changes to scope, timeline, budget, or approach..."
-                            style="width: 100%; padding: 12px; border: 2px solid var(--neutral-200); border-radius: 8px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
-                        <button onclick="saveReport()" 
-                                style="background: var(--primary-blue); color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-                            💾 Save Report
-                        </button>
-                        <button onclick="clearForm()" 
-                                style="background: var(--neutral-200); color: var(--neutral-700); padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-                            🗑️ Clear Form
-                        </button>
-                        <button onclick="exportReport()" 
-                                style="background: var(--accent-teal); color: white; padding: 14px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 8px;">
-                            📄 Export as Text
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Saved Reports Display -->
-                <div id="savedReports" style="margin-top: 32px;">
-                    <h4 style="color: var(--primary-navy); margin-bottom: 16px; font-weight: 600;">Previous Reports</h4>
-                    <div id="reportsList" style="display: flex; flex-direction: column; gap: 16px;">
-                        <!-- Saved reports will appear here -->
-                    </div>
-                </div>
-            </div>
+    
+    <!-- Week 1 Report -->
+    <div class="content-box" style="margin-bottom: 32px;">
+        <h3>📅 Week 1 Status Report - [Date Range]</h3>
+        
+        <h4>Project Goal:</h4>
+        <p>Establish measurable IT industry readiness to successfully apply for and interview for entry-level data management or enterprise systems management positions by December 2025.</p>
+        
+        <h4>Overall Project Health:</h4>
+        <div style="display: inline-block; padding: 8px 16px; background: #d1fae5; border: 2px solid var(--success-green); border-radius: 8px; color: #065f46; font-weight: 600; margin: 8px 0;">
+            ✅ On Track
         </div>
+        
+        <h4>Accomplishments This Week:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li>Completed project initiation phase including problem identification and stakeholder kick-off</li>
+            <li>Conducted SWOT analysis to assess project risks and opportunities</li>
+            <li>Created initial project charter and defined scope</li>
+            <li>Identified 4-5 IT professionals to contact for networking database</li>
+        </ul>
+        
+        <h4>Plans for Next Week:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li>Begin CompTIA A+ Core 1 exam preparation</li>
+            <li>Research and collect study resources (books, videos, practice labs)</li>
+            <li>Create detailed study schedule for certification exams</li>
+            <li>Start designing HTML website structure and layout</li>
+        </ul>
+        
+        <h4>Upcoming Milestones:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li><strong>September 15:</strong> Complete CompTIA A+ Core 1 exam</li>
+            <li><strong>September 26:</strong> Complete CompTIA A+ Core 2 exam</li>
+            <li><strong>October 10:</strong> Complete initial HTML website structure</li>
+        </ul>
+        
+        <h4>Issues & Risk Mitigation:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li><strong>Risk:</strong> Limited time for certification study while managing other coursework
+                <br><strong>Mitigation:</strong> Created structured daily study schedule with 2-hour dedicated blocks</li>
+            <li><strong>Risk:</strong> No prior HTML/CSS experience
+                <br><strong>Mitigation:</strong> Enrolled in online tutorials and allocated extra time for learning</li>
+        </ul>
+        
+        <h4>Changes Since Last Report:</h4>
+        <p>Initial project report - no prior baseline to compare.</p>
+    </div>
+
+    <!-- Week 2 Report -->
+    <div class="content-box" style="margin-bottom: 32px;">
+        <h3>📅 Week 2 Status Report - [Date Range]</h3>
+        
+        <h4>Project Goal:</h4>
+        <p>Establish measurable IT industry readiness to successfully apply for and interview for entry-level data management or enterprise systems management positions by December 2025.</p>
+        
+        <h4>Overall Project Health:</h4>
+        <div style="display: inline-block; padding: 8px 16px; background: #d1fae5; border: 2px solid var(--success-green); border-radius: 8px; color: #065f46; font-weight: 600; margin: 8px 0;">
+            ✅ On Track
+        </div>
+        
+        <h4>Accomplishments This Week:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li>Started CompTIA A+ Core 1 study materials - completed first 3 chapters</li>
+            <li>Set up development environment (VS Code, Git, GitHub)</li>
+            <li>Created basic HTML structure for portfolio website</li>
+            <li>Reached out to 2 IT professionals for networking database</li>
+        </ul>
+        
+        <h4>Plans for Next Week:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li>Continue CompTIA A+ study - complete chapters 4-6</li>
+            <li>Begin hands-on practice with hardware components</li>
+            <li>Add CSS styling to website</li>
+            <li>Schedule informational interviews with contacted professionals</li>
+        </ul>
+        
+        <h4>Upcoming Milestones:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li><strong>September 10:</strong> Complete practice quizzes for Core 1</li>
+            <li><strong>September 14:</strong> Schedule Core 1 exam</li>
+            <li><strong>September 15:</strong> Take CompTIA A+ Core 1 exam</li>
+        </ul>
+        
+        <h4>Issues & Risk Mitigation:</h4>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+            <li><strong>Challenge:</strong> Some CompTIA concepts more difficult than expected
+                <br><strong>Solution:</strong> Joined online study group for additional support and practice questions</li>
+        </ul>
+        
+        <h4>Changes Since Last Report:</h4>
+        <p>Adjusted study timeline to allow more time for hands-on practice with hardware components based on difficulty level of material.</p>
+    </div>
+
+    <!-- Add more weeks as needed -->
+    <div class="content-box" style="margin-bottom: 32px;">
+        <h3>📅 Week 3 Status Report - [Date Range]</h3>
+        <p style="font-style: italic; color: var(--neutral-600);">Report in progress - will be completed by [date]</p>
+    </div>
+
+    <!-- Summary Section -->
+    <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 24px; border-radius: 12px; margin-top: 32px; border-left: 4px solid var(--primary-blue);">
+        <h4 style="color: var(--primary-navy); margin-bottom: 12px; font-weight: 600;">Project Progress Summary:</h4>
+        <ul style="margin: 0; padding-left: 20px;">
+            <li>Total weeks tracked: 2</li>
+            <li>Overall project health: On Track</li>
+            <li>Major milestones completed: 3</li>
+            <li>Current phase: Initiation & Early Execution</li>
+        </ul>
     </div>
 </div>
             <!-- Interactive Quiz Section -->
