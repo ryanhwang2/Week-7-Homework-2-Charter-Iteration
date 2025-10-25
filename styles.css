@@ -98,79 +98,79 @@
 /* ============================================== */
 
 /* 1. H4 Heading Spacing and Divider */
-        #section-10 .content-box h4 {
+#section-10 .content-box h4 {
     /* Override general h4 styling for better spacing in status report */
-            margin: 30px 0 12px 0; 
-            font-size: 18px; 
-            border-bottom: 1px solid var(--neutral-100); /* Subtle divider */
-            padding-bottom: 8px;
-        }
+    margin: 30px 0 12px 0; 
+    font-size: 18px; 
+    border-bottom: 1px solid var(--neutral-100); /* Subtle divider */
+    padding-bottom: 8px;
+}
 
 /* 2. Cleaner Table Styles (Milestones Table) */
-        #section-10 .table-container {
-           border: 1px solid var(--neutral-200);
-           border-radius: 8px;
-           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer shadow */
-        }
+#section-10 .table-container {
+    border: 1px solid var(--neutral-200);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer shadow */
+}
 
-        #section-10 .content-box table {
+#section-10 .content-box table {
     /* Ensure no margins/gaps inside the container */
-           margin: 0; 
-           border-collapse: collapse;
-        }
+    margin: 0; 
+    border-collapse: collapse;
+}
 
-        #section-10 .content-box th {
-           background: var(--primary-navy); /* Solid dark header */
-           color: var(--white);
-           padding: 12px 18px; 
-           border: none;
-        }
+#section-10 .content-box th {
+    background: var(--primary-navy); /* Solid dark header */
+    color: var(--white);
+    padding: 12px 18px; 
+    border: none;
+}
 
-        #section-10 .content-box td {
-           padding: 12px 18px;
-           border-bottom: 1px solid var(--neutral-100); /* Faint horizontal dividers */
-        }
+#section-10 .content-box td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--neutral-100); /* Faint horizontal dividers */
+}
 
-    /* Zebra-striping for Section 10 table body */
-        #section-10 .content-box tbody tr:nth-child(even) {
-           background-color: var(--neutral-50); 
-        }
+/* Zebra-striping for Section 10 table body */
+#section-10 .content-box tbody tr:nth-child(even) {
+    background-color: var(--neutral-50); 
+}
 
-        #section-10 .content-box tbody tr:last-child td {
-           border-bottom: none; 
-        }
+#section-10 .content-box tbody tr:last-child td {
+    border-bottom: none; 
+}
 
 
 /* 3. Softer Status/Change Boxes (Issues & Changes) */
-        #section-10 .status-risk-action {
-          background-color: var(--neutral-50);
-          border: 1px solid var(--neutral-200); 
-          border-left: 5px solid var(--warning-amber); /* Use amber for risk */
-          padding: 20px; 
-          border-radius: 8px; 
-          margin: 25px 0; 
-          box-shadow: var(--shadow);
-        }
+#section-10 .status-risk-action {
+    background-color: var(--neutral-50);
+    border: 1px solid var(--neutral-200); 
+    border-left: 5px solid var(--warning-amber); /* Use amber for risk */
+    padding: 20px; 
+    border-radius: 8px; 
+    margin: 25px 0; 
+    box-shadow: var(--shadow);
+}
 
-        #section-10 .change-item {
-          background-color: var(--white);
-          padding: 20px;
-          margin: 15px 0;
-          border: 1px solid var(--neutral-200); 
-          border-left: 5px solid var(--primary-blue); /* Use blue for changes */
-          border-radius: 8px;
-          box-shadow: var(--shadow);
-        }
+#section-10 .change-item {
+    background-color: var(--white);
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid var(--neutral-200); 
+    border-left: 5px solid var(--primary-blue); /* Use blue for changes */
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
 
-        #section-10 .change-item p {
-          margin: 5px 0; /* Tighten up paragraph spacing in the change box */
-        }
+#section-10 .change-item p {
+    margin: 5px 0; /* Tighten up paragraph spacing in the change box */
+}
 
-        #section-10 .change-label {
-          font-weight: 700;
-          color: var(--primary-navy);
-          margin-bottom: 8px;
-        }
+#section-10 .change-label {
+    font-weight: 700;
+    color: var(--primary-navy);
+    margin-bottom: 8px;
+}
 
         @media (max-width: 768px) {
         .expand-all-toggle {
