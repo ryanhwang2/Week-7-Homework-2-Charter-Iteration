@@ -106,32 +106,49 @@
     padding-bottom: 8px;
 }
 
-/* 2. Cleaner Table Styles (Milestones Table) */
+/* 2. Cleaner Table Styles (Milestones Table) - MODIFIED FOR FULL GRID */
 #section-10 .table-container {
+    /* This container provides the outer box effect */
     border: 1px solid var(--neutral-200);
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 #section-10 .content-box table {
-    /* Ensure no margins/gaps inside the container */
-    margin: 0; 
-    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse; /* This ensures lines meet cleanly */
 }
 
 #section-10 .content-box th {
-    background: var(--primary-navy); /* Solid dark header */
+    background: var(--primary-navy);
     color: var(--white);
-    padding: 12px 18px; 
-    border: none;
+    padding: 12px 18px;
+    /* Add a vertical divider in the header */
+    border-right: 1px solid var(--primary-navy); 
+    border-bottom: 1px solid var(--neutral-100);
 }
+
+/* Remove the vertical border from the last header cell */
+#section-10 .content-box th:last-child {
+    border-right: none; 
+}
+
 
 #section-10 .content-box td {
     padding: 12px 18px;
-    border-bottom: 1px solid var(--neutral-100); /* Faint horizontal dividers */
+    /* This creates the vertical lines (boxes) */
+    border-right: 1px solid var(--neutral-200); 
+    /* This creates the horizontal lines (rows) */
+    border-bottom: 1px solid var(--neutral-100); 
 }
 
-/* Zebra-striping for Section 10 table body */
+/* Remove the vertical border from the last data cell */
+#section-10 .content-box td:last-child {
+    border-right: none;
+}
+
+/* Zebra-striping for Section 10 table body (for clear rows) */
 #section-10 .content-box tbody tr:nth-child(even) {
     background-color: var(--neutral-50); 
 }
