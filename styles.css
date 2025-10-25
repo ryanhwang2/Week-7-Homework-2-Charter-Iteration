@@ -721,43 +721,49 @@
         }
 
         .quiz-container {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 2px solid var(--primary-blue);
-            border-radius: 16px;
-            padding: 32px;
-            margin: 24px 0;
+            /* Standard box look: reduced padding, light background, subtle border */
+            background: var(--white);
+            border: 1px solid var(--neutral-200);
+            border-left: 5px solid var(--primary-blue); /* Primary blue accent stripe */
+            padding: 24px; /* Standard section padding */
+            border-radius: 8px; /* Standard rounding */
+            margin: 20px 0; /* Standard vertical spacing */
+            box-shadow: var(--shadow); /* Standard subtle shadow */
         }
 
+        /* Style for the question header inside the box */
         .quiz-question h4 {
-            color: var(--primary-navy);
-            margin-bottom: 16px;
-            font-size: 20px;
+            color: var(--neutral-800); /* Standard dark gray color */
+            margin-bottom: 0 0 16px 0; /* Align with general text flow */
+            font-size: 20px; /* Use a medium size for prominence */
             font-weight: 600;
         }
-
+        
+        /* Style for the options/buttons */
         .quiz-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
+            gap: 12px;
+            margin: 24px;
         }
 
         .quiz-btn {
-            background: var(--white);
-            border: 2px solid var(--neutral-200);
-            padding: 16px 20px;
-            border-radius: 12px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--neutral-200);
+            background-color: var(--neutral-50);
+            color: var(--neutral-700);
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: 500;
-            font-size: 14px;
-            text-align: center;
+            text-align: left;
         }
 
-        .quiz-btn:hover {
-            background: var(--neutral-50);
+        .quiz-btn:hover:not(:disabled) {
+            background: var(--neutral-100);
             border-color: var(--primary-blue);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             box-shadow: var(--shadow);
         }
 
